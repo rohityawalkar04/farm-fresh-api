@@ -2,18 +2,18 @@ name: farm-fresh-api
 on: [push, pull_request]
 jobs:
   test:
-    runs-on: ubuntu-latest # this job runs on ubuntu run all code against
+    runs-on: ubuntu-latest
       services:
         db:
           image: mysql:8.0.26
-          ports: ['3306:3306'] #docker_host:container any incoming requests to host on port 3306 gets forwarded to container at port 3306
+          ports: ['3306:3306']
           options: >-
             --health-cmd mysql_isready
             --health-interval 10s
             --health-timeout 5s
             --health-retries 5
-      steps: # these are the steps we want our workflow to run
-        - uses: actions/checkout@v2 # this clones the repo
+      steps:
+        - uses: actions/checkout@v2
         - name: Setup Ruby
           uses: actions/setup-ruby@v1
           with:
@@ -21,7 +21,7 @@ jobs:
         - name: build and run tests
           env:
             DATABASE_URL: mysql://mysql:@localhost:/3306/farm-fresh
-            RAILS_ENV: test # uses rails env as test
+            RAILS_ENV: test
           run:
             gem install bundler
             bundle install --path .bundle --jobs 4 --retry 3
