@@ -3,27 +3,21 @@ on: [push, pull_request]
 jobs:
   test:
     runs-on: ubuntu-latest
-      services:
-        db:
-          image: mysql:8.0.26
-          ports: ['3306:3306']
-          options: >-
-            --health-cmd mysql_isready
-            --health-interval 10s
-            --health-timeout 5s
-            --health-retries 5
+    services:
+      db:
+        image: "mysql:8.0.26"
+        options: "--health-cmd mysql_isready --health-interval 10s --health-timeout 5s --health-retries 5"
+        ports:
+          - "3306:3306"
       steps:
         - uses: actions/checkout@v2
-        - name: Setup Ruby
+        - name: "Setup Ruby"
           uses: actions/setup-ruby@v1
           with:
-            ruby-version: 2.6.3
-        - name: build and run tests
+            ruby-version: "2.6.3"
+        -
           env:
-            DATABASE_URL: mysql://mysql:@localhost:/3306/farm-fresh
+            DATABASE_URL: "mysql://mysql:@localhost:/3306/farm-fresh"
             RAILS_ENV: test
-          run:
-            gem install bundler
-            bundle install --path .bundle --jobs 4 --retry 3
-            bundle exec rake db:drop db:create db:migrate
-            bundle exec rake test
+          name: "build and run tests"
+          run: "gem install bundler bundle install --path .bundle --jobs 4 --retry 3 bundle exec rake db:drop db:create db:migrate bundle exec rake test"
