@@ -1,0 +1,16 @@
+default: &default
+  adapter: mysql2
+  pool: 5
+  timeout: 5000
+  port: 3306
+  host: <%= ENV['DB_HOST'] %>
+  username: <%= ENV['DB_USERNAME'] %>
+  password: <%= ENV['DB_PASSWORD'] %>
+
+development:
+  <<: *default
+  database: farm-fresh-development
+
+production:
+  <<: *default
+  database: farm-fresh-production
