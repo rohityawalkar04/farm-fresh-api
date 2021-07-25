@@ -10,16 +10,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_24_192140) do
+ActiveRecord::Schema.define(version: 2021_07_25_112633) do
+
+  create_table "orders", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
+    t.string "receiver_name"
+    t.bigint "product_id"
+    t.index ["product_id"], name: "index_orders_on_product_id"
+  end
+
+  create_table "product_categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
+    t.string "name"
+  end
+
+  create_table "products", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
+    t.string "name"
+    t.integer "price"
+    t.bigint "product_category_id"
+    t.index ["product_category_id"], name: "index_products_on_product_category_id"
+  end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
     t.string "name"
     t.string "email"
-    t.string "phone_number"
+    t.string "mobile_number"
     t.string "password"
     t.text "address"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "orders", "products"
+  add_foreign_key "products", "product_categories"
 end
