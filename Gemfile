@@ -12,3 +12,12 @@ gem 'puma', '~> 3.11'
 group :development do
     gem 'byebug'
 end
+
+group :test do
+  gem 'byebug'
+  gem 'database_cleaner'
+  gem 'factory_bot'
+  gem 'minitest'
+  gem 'pry'
+  gem 'rack-test'
+end

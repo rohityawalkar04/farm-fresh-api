@@ -11,6 +11,10 @@ development:
   <<: *default
   database: farm-fresh-development
 
+test:
+  <<: *default
+  database: farm-fresh-test
+
 production:
   <<: *default
   database: farm-fresh-production
