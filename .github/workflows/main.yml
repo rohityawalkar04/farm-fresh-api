@@ -4,13 +4,13 @@ jobs:
   test:
     runs-on: ubuntu-latest
     services:
-      db:
+      mysql:
         image: mysql:5.7
         env:
-          MYSQL_ROOT_PASSWORD: ""
-        options: --health-cmd "mysqladmin ping" --health-interval 10s --health-timeout 5s --health-retries 10
+          MYSQL_ROOT_USERNAME: root
         ports:
           - 3306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
     steps:
       - uses: actions/checkout@v2
       - name: "Setup Ruby"
