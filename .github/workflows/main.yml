@@ -17,6 +17,7 @@ jobs:
           ruby-version: "2.6.3"
       -
         env:
+        # "mysql2://root:root@127.0.0.1:${{ job.services.mysql.ports['3306'] }}/myapp"
           DATABASE_URL: "mysql://mysql:@localhost:/3306/farm-fresh"
           RAILS_ENV: test
         name: "build and run tests"
