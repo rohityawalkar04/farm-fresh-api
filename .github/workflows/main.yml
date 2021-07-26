@@ -17,7 +17,6 @@ jobs:
           ruby-version: "2.6.3"
       -
         env:
-          DATABASE_URL: "mysql://root:@localhost:3306/farm-fresh"
           RAILS_ENV: test
         name: "build and run tests"
         run: "gem install bundler bundle install --path .bundle --jobs 4 --retry 3 bundle exec rake db:drop db:create db:migrate bundle exec rake test"
