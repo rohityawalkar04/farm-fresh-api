@@ -8,6 +8,7 @@ gem 'irb'
 gem 'activerecord'
 gem 'sinatra-activerecord'
 gem 'puma', '~> 3.11'
+gem "sinatra-cross_origin", "~> 0.3.1"
 
 group :development do
     gem 'byebug'

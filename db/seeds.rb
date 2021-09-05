@@ -1,4 +1,4 @@
-User.create(name: "admin", email: "admin@example.com", mobile_number: "1234567890", password: "12345678", address: "Nashik")
+User.create(name: "Rohit Yawalkar", email: "rohtyawalkar04@gmail.com", mobile_number: "9876543210", password: "12345678", address: "Nashik")
 
 ProductCategory.create(name: "vegetable")
 ProductCategory.create(name: "fruit")

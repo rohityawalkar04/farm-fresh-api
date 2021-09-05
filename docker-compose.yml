@@ -1,0 +1,19 @@
+veggies-app:
+    container_name: veggies-app
+    restart: always
+    build: . # building the same dockerfile we are having
+    ports:
+        - "80:3005"
+    links:
+        - mysql
+mysql:
+    container_name: mysql
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    expose:
+        - "3306"
+    volumes:
+        - ./data:/data/db
+    ports:
+        - "3306:3306"
